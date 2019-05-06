@@ -10,7 +10,7 @@ const DOMstrings = {
     lArrow: document.querySelector('.l'),
     rArrow: document.querySelector('.r')
 }
-let focus = 3;
+let focus = 0;
 const sections = document.querySelectorAll('section');
 
 const getFocus = () => {
