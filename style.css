@@ -6,40 +6,31 @@
 
 body {
     height: 100%;
-    font-family: 'Lato', sans-serif;
+    font-family: 'EB Garamond', serif;
 }
 
-.background {
-    height: 100vh;
-    width: 100%;
-    background: #bbb;
-    /* border: 1px solid #555; */
-    display: block;
-}
+
+/**************************************/
+/************** header ****************/
+/**************************************/
 
 header {
-    height: 2.2rem;
     position: fixed;
     top: 0;
     z-index: 10;
     background-color: rgba(0, 0, 0, 0.2);
-    color: #fff;
-}
-header::after {
-    content: " ";
-    display: block;
-    height: 1px;
-    background: #ddd;
-    width: 60%;
-    position: relative;
-    margin: 0 auto;
 }
 header ul {
-    margin: .5rem 0;
+    margin: 1px;
     width: 100vw;
     list-style: none;
     display: flex;
     justify-content: space-around;
+}
+header li {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 header a {
@@ -48,12 +39,55 @@ header a {
     text-transform: uppercase;
     font-size: 0.8rem;
     transition: 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
-
+    margin: 2px;
 }
 
-header a:hover,
-header a:active {
-    border-bottom: .5px #ddd solid; 
+header a:not(.cv_picture-link) {
+    padding: .2rem;
+    border-radius: 10px;
+    /* display: none; */
+}
+
+header a:hover:not(.cv_picture-link ) {
+    box-shadow: 0 0 1px 1px;
+    padding: .2rem;
+}
+
+.inner_nav {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 3rem;
+    left: 0;
+}
+
+.cv_picture-crop {
+    width: 2.5rem;
+    height: 2.5rem;
+    max-height: 3rem;
+    max-width: 3rem;
+    overflow: hidden;
+    border-radius: 50%;
+    transition: .5s cubic-bezier(0.215, 0.610, 0.355, 1);
+}
+.cv_picture-link {
+    box-shadow: 0 0 0 0;
+    padding: 0;
+    border-radius: 50%;
+}
+.cv_picture-link:hover {
+    box-shadow: 0 0 1px 1px;
+    padding: 0;
+    border-radius: 50%;
+}
+.marker {
+    box-shadow: 0 0 1px 1px;
+    display: inline !important;
+}
+.cv_picture {
+    height: 100%;
+    width: 100%;
 }
 
 main {
@@ -64,8 +98,158 @@ main {
 
 section {
     height: 100vh;
+    position: absolute;
+    top: 0;
+    overflow: hidden;
+    /* border: red 1px solid; */
+}
+.left {
+    left: -100vw;
+}
+.right {
+    right: 100vw;
+}
+.focus {
+    left: 0;
 }
 
+.background {
+    height: 100vh;
+    width: 100vw;
+    background: #bbb;
+    display: block;
+    z-index: -10;
+    display: absolute;
+    top: 0;
+}
+
+
+
+.section_inhold {
+    width: 100%;
+    height: 90%;
+    position: absolute;
+    top: 3rem;
+    margin: 0 auto;
+    padding: 1rem 3rem 2rem;
+    transition: 1s cubic-bezier(0.215, 0.610, 0.355, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* border: #000 solid 1px; */
+}
+
+.arrow  {
+    position: absolute;
+    top: 50vh;
+    transform: translate(0, -50%);
+    z-index: 100;
+    font-size: 4rem;
+    color: rgba(0, 0, 0, 0.3)
+}
+.unvisible {
+    display: none;
+}
+.l {
+    left: 10px;
+}
+.r {
+    right: 10px;
+}
+.list {
+    text-align: center
+}
+.list a {
+    text-decoration: none;
+    color: #000;
+}
+.list li {
+    list-style: none;
+    margin-bottom: .5rem;
+}
+.list h3 {
+    text-transform: capitalize
+}
+.title {
+    display: flex;
+    margin: 0.5rem 0 0.5rem;
+    width: 100%;
+}
+.title_name {
+    margin: 0 auto;
+    text-transform: uppercase;
+}
+.list h3 {
+    text-align: center;
+    font-size: .8rem;
+}
+.list h6 {
+    color: #444;
+    font-size: 0.6rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+.list h5 {
+    color: #222;
+    text-align: center;
+}
+
+#home .section_inhold {
+    justify-content: space-evenly
+}
+.main_top h1 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    text-transform: capitalize;
+    font-size: 2rem;
+}
+.main_top p {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: .8rem;
+    margin-top: .8rem
+}
+
+#skills .expiriance {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+}
+.expiriance > div{
+    margin: 2rem 1rem;
+
+}
+.tools i {
+    margin-right: 1rem;
+}
+
+.git i {
+    font-size: 2.5rem;
+}
+
+@media (min-width: 30rem) {
+    /* .section_inhold {
+        flex-direction: row;
+        justify-content: space-around;
+    } */
+    #skills .section_inhold {
+        flex-direction: column;
+    }
+    header a:not(.cv_picture-link) {
+        display: block;
+    }
+    .inner_nav {
+        display: flex;
+        width: 60vw;
+        flex-wrap: wrap;
+        position: static;
+    }
+}
+
+/* 
 .main_top,
 .main_bottom {
     height: 50%;
@@ -88,44 +272,8 @@ a:hover {
     cursor: pointer;
 }
 
-.cv_picture-crop {
-    width: 8rem;
-    height: 8rem;
-    overflow: hidden;
-    border-radius: 50%;
-    border: 1px solid #000;
-    position: absolute;
-    top: 50vh;
-    left: 50vw;
-    transform: translate(-50%, -50%);
-    transition: .5s cubic-bezier(0.215, 0.610, 0.355, 1);
-}
-.cv_picture-crop:hover,
-.cv_picture-crop:active {
-    cursor: pointer;
-    box-shadow: 0 0 1px 1px;
-}
-.cv_picture {
-    height: 100%;
-    width: 100%;
-}
-.cv_picture-out {
-    left: -200px;
-}
-.about_me {
-    width: 90%;
-    max-width: 25rem;
-    text-align: justify;
-    position: absolute;
-    top: 50vh;
-    left: -100vw;
-    transform: translate(-50%, -50%);
-    padding: .5rem;
-    border: 1px solid #000;
-    border-radius: 20px;
-    transition: 1s cubic-bezier(0.215, 0.610, 0.355, 1);
-    
-}
+
+
 .about_me:hover,
 .about_me:active {
     cursor: pointer;
@@ -134,16 +282,7 @@ a:hover {
 .about_me-in {
     left: 50vw;
 }
-.title {
-    display: flex;
-    margin: 2.5rem 0 1rem;
-    width: 100%;
-}
-.title_name {
-    margin: 0 auto;
-    text-transform: uppercase;
-    
-}
+
 .git_logo a {
     display: block;
     font-size: 3rem;
@@ -202,14 +341,7 @@ section h5 {
     color: #222;
     text-align: center;
 }
-.skills i {
-    margin-right: 1rem;
-}
-/* .usefull {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-} */
+
 
 
 .contact_me-container {
@@ -325,17 +457,4 @@ section h5 {
     cursor: pointer;
 }
 
-@media (min-width: 30rem) {
-    #school,
-    .expiriance {
-        flex-direction: row;
-        justify-content: space-around;
-    }
-    /* section.
-    #expiriance {
-        flex-direction: column; 
-    }
-    #expiriance {
-        flex-wrap: wrap;
-    } */
-}
+ */

@@ -6,102 +6,134 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=EB+Garamond|Roboto:400,500" rel="stylesheet">
     <link rel="shortcut icon" href="./img/cv-icon.png" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
     <title>CV - Marcin Sawczuk-Szymkiewicz</title>
 </head>
 <body>
-    <canvas class="background" id="home"></canvas><!--  
- --><canvas class="background" id="school"></canvas><!-- 
- --><canvas class="background" id="expiriance"></canvas><!-- 
- --><canvas class="background" id="contact_me-canvas"></canvas>
+
     <header>
         <nav>
             <ul>
-                <li><a href="#home"><i class="fas fa-home"></i></a></li>
-                <li><a href="#school">utdanning</a></li>
-                <li><a href="#expiriance">ferdigheter</a></li>
-                <li><a href="#contact_me">kontakt meg</a></li>
-                <li><a href="./files/CV, Marcin Sawczuk-Szymkiewicz, front-end utvikler.pdf"><i class="fas fa-arrow-circle-down" download></i> CV</a></li>
+                <li><a class="cv_picture-link navigation" href="#home">
+                    <div class="cv_picture-crop">
+                        <img class="cv_picture" src="./img/cv_picture.jpg" alt="Marcin Sawczuk-Szymkiewicz cv picture">
+                    </div></i></a>
+                </li>
+                <li>
+                    <ul class="inner_nav">
+                        <li><a class="navigation" href="#learned">utdanning</a></li>
+                        <li><a class="navigation" href="#courses">kurs</a></li>
+                        <li><a class="navigation" href="#skills">ferdigheter</a></li>
+                        <li><a class="navigation" href="#job">arbeidserfaring</a></li>
+                        
+                    </ul>
+                </li><li><a class="navigation" href="#contact_me">kontakt</a></li>
+                <li><a class="cv_download" href="./files/CV, Marcin Sawczuk-Szymkiewicz, front-end utvikler.pdf"><i class="fas fa-arrow-circle-down" download></i> CV</a></li>
             </ul>
         </nav>
-
     </header>
     <main>
-        <section id="home">
-            <div class="cv_picture-crop">
-                <img class="cv_picture" src="./img/cv_picture.jpg" alt="Marcin Sawczuk-Szymkiewicz cv picture">
-            </div>
-            <p class="about_me">
-                Jeg er en 35år gammel, optimistisk kar som brenner for å jobbe med koding.
-                Jeg er selvmotivert og ser etter en jobb hvor i en team blir jeg en stark programmer.
-                I de siste årene hadde jeg forsllige urellaterte med programmerig jobber
-                 som ga meg mye glede og erfaring i forskjelle fagene.
-                Men så kjente jeg at jeg savner programmerig. Derfor jeg er har i dag. 
-                
-            </p>
-            <div class="main_top">
-                <h1>Curriculum vitae</h1>
-            </div>
-            <div class="main_bottom">
-                <h1>marcin <br> sawczuk  -  szymkiewicz</h1>
+        <div class="arrow r">&#187;</div>
+        </div>
+        <div class="arrow l">&#171;</div>
+        <section id="home" class="left">
+            <canvas class="background home"></canvas>
+            <div class="section_inhold">
+                <div class="main_top">
+                    <h1>marcin </h1>
+                    <h1>sawczuk-szymkiewicz</h1><p>front-end developer</p>
+                </div>
+                <div class="main_bottom">
+                    <p class="about_me">
+                        Jeg er en 35år gammel, optimistisk kar som brenner for å jobbe med koding.
+                        Jeg er selvmotivert og ser etter en jobb hvor i en team blir jeg en stark programmer.
+                        I de siste årene hadde jeg forsllige urellaterte med programmerig jobber
+                        som ga meg mye glede og erfaring i forskjelle fagene.
+                        Men så kjente jeg at jeg savner programmerig. Derfor jeg er har i dag. 
+                    </p>    
+                </div> 
             </div>
         </section>
-        <section id="school">
-            <div class="school">
-                <div class="title">
-                    <h4 class="title_name">utdanning</h4>
+        <section id="learned" class="left">
+            <canvas class="background school"></canvas>
+            <div class="section_inhold">
+                <div class="school">
+                    <!-- <div class="title">
+                        <h2 class="title_name">studier</h2>
+                    </div> -->
+                    <ul class="list">
+                        <li>
+                            <h3><a href="http://users.ift.uni.wroc.pl/~ismk/">Universitet i Wroclaw</a></h3>
+                            <h6>september 2003 - juni 2006   <br>bachelor</h6>
+                            <h5>fysikk og data science</h5>
+                        </li>
+                        <li>
+                            <h3><a href="https://www.ue.wroc.pl/wydzial_zif/12610/english_info.html">økonomisk universitet i wroclaw</a></h3>
+                            <h6>september 2006 -  juni 2008   </h6>
+                            <h5>fakultet for ledelse, informatikk og økonomi</h5>
+                        </li>
+                    </ul>
                 </div>
-                <ul>
-                    <li>
-                        <h3><a href="http://users.ift.uni.wroc.pl/~ismk/">Universitet i Wroclaw</a></h3>
-                        <h6>2003 - 2006   <br>   polen - bachelor</h6>
-                        <h5>fysikk og data science</h5>
-                    </li>
-                    <li>
-                        <h3><a href="https://www.ue.wroc.pl/wydzial_zif/12610/english_info.html">økonomisk universitet i wroclaw</a></h3>
-                        <h6>2006 - 2008   <br>   polen - ufullfylt</h6>
-                        <h5>fakultet for ledelse, informatikk og finans</h5>
-                    </li>
-                </ul>
             </div>
-            <div class="school">
-                <div class="title">
-                    <h4 class="title_name">udemy kurs</h4>
-                </div>
-                <ul>
-                    <li>
-                        <h3>CSS - The Complete Guide (incl. Flexbox, Grid & Sass)</h3>
-                    </li>
-                    <li>
-                        <h3>Build Responsive Real World Websites with HTML5 and CSS3</h3>
-                    </li>
-                    <li>
-                        <h3>The Complete JavaScript Course 2019: Build Real Projects!</h3>
-                    </li>
-                    <li>
-                        <h3>The Modern JavaScript Bootcamp (2019)</h3>
-                    </li>
-                </ul>
+        </section>
+        <section id="courses" class="left">
+            <canvas class="background school"></canvas>
+            <div class="section_inhold">
+                <div class="course">
+                    <!-- <div class="title">
+                        <h2 class="title_name">kurs</h2>
+                    </div> -->
+                    <ul class="list">
+                        <li>
+                            <h3>React - The complite guide</h3>
+                            <h6>mai 2019 - nå</h6>
+                            <h5>Academind</h5>
+                        </li>   
+                        <li>
+                            <h3>CSS - The complete guide</h3>
+                            <h6>september 2018 - november 2018</h6>
+                            <h5>Academind</h5>
+                        </li>                        
+                        <li>
+                            <h3>The Modern JavaScript Bootcamp</h3>
+                            <h6>september 2018 - november 2018</h6>
+                            <h5>Andrew Mead</h5>
+                        </li>
+                        <li>
+                            <h3>Build Responsive with HTML5 and CSS3</h3>
+                            <h6>juli 2018 - september 2018</h6>
+                            <h5>Jonas Schmedtmann</h5>
+                        </li>                       
+                        <li>                              
+                            <h3>The Complete JavaScript Course</h3>
+                            <h6>mai 2018 - juli 2018</h6>
+                            <h5>Jonas Schmedtmann</h5>
+                        </li>
+                    </ul>
+                </div>  
             </div>
-
         </section>
 
-        <section id="expiriance">
+
+        <section id="skills" class="left">
+            <canvas class="background skills"></canvas>
+            <div class="section_inhold ">
             <div class="expiriance">
-                <div class="skills">
+                <div class="tools">
                     <div class="title">
-                        <h4 class="title_name">teknologi</h4>
+                        <h4 class="title_name">verktøy</h4>
                     </div>
-                    <ul>
+                    <ul class="list">
                         <li>
-                            <h3><i class="fab fa-js-square"></i>JavaScript</h3>
+                            <h4><i class="fab fa-js-square"></i>JavaScript</h4>
                         </li>
                         <li>
-                            <h3><i class="fab fa-css3-alt"></i>CSS</h3>
+                            <h4><i class="fab fa-css3-alt"></i>CSS</h4>
                         </li>
                         <li>
-                            <h3><i class="fab fa-html5"></i>HTML</h3>
+                            <h4><i class="fab fa-html5"></i>HTML</h4>
                         </li>
                     </ul>
                 </div>
@@ -109,15 +141,15 @@
                     <div class="title">
                         <h4 class="title_name">språk</h4>
                     </div>
-                    <ul>
+                    <ul class="list">
                         <li>
-                            <h3>norsk</h3>
+                            <h4>norsk</h4>
                         </li>
                         <li>
-                            <h3>engelsk</h3>
+                            <h4>engelsk</h4>
                         </li>
                         <li>
-                            <h3>polsk</h3>
+                            <h4>polsk</h4>
                         </li>
                     </ul>
                 </div>
@@ -125,9 +157,9 @@
                     <div class="title">
                         <h4 class="title_name">github</h4>
                     </div>
-                    <ul>
+                    <ul class="list">
                         <li>
-                            <a href="https://github.com/hejuhenryk"><h3>hejuhenryk</h3></a>
+                            <a href="https://github.com/hejuhenryk"><h4>hejuhenryk</h4></a>
                         </li>
 
                         <li class="git_logo">
@@ -136,67 +168,64 @@
                     </ul>
                 </div>    
             </div>
-            <div class="job">
-                <div class="title">
-                    <h4 class="title_name">arbeidserfaring</h4>
-                </div>
-                <ul>
-                    <li>
-                        <h3>Sognsveien barnehage - Oslo</h3>
-                        <h6>August 2015 - nå &emsp; stiling: barnehagemedarbeider</h6>
-                    </li>
-                    <li>
-                        <h3>Keyserløkka barnehage - Oslo</h3>
-                        <h6>August 2014 - Juni 2015 &emsp; stiling: barnehagemedarbeider</h6>
-                    </li>
-                    <li>
-                        <h3>Café Amfitrion - Oslo</h3>
-                        <h6>August 2008 - November 2011 &emsp; stiling: daglig leder, barista, medarbeider</h6>
-                    </li>
-                </ul>
+             
             </div>
         </section>
-        <section id="contact_me">
-            <div class="contact_me-container">  
-            <form id="contact" action="https://formsubmit.co/f8691758356c54be6c25deb3e6def1fc" method="POST">
-                <h3>Kontakt meg</h3>
-                <!-- <h4>Så ser vi når vi kan møte</h4> -->
-                <input type="hidden" name="_next" value="https://hejuhenryk.github.io/Curriculum_vitae/thanks.html">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_subject" value="Hei check it now!">
-                <input id="name" name="name" placeholder="Navn" type="text" tabindex="0" required>
-                <input id="email" name="email" placeholder="E-postadresse" type="email" tabindex="2" required>
-                <input id="phone" name="phone" placeholder="Telefonnumer" type="tel" tabindex="3" required>
-                <textarea id="message" name="message" placeholder="Skriv en besjed" tabindex="5" required></textarea>
-                <button name="submit" type="submit" id="contact-submit" value='Send' data-submit="...Sender">Send</button>
-            </form>
-            <div class="last_word">
-                Siden du har kommet så langt, så ønsker du sikkert å kontakte meg for et intervju. 
-                Om jeg ikke er ute på en sykkel- eller joggetur, spiller sykkelpolo, lekker med mine unger,
-                 svømmer eller mediterer, så sitter jeg og koder. Og da svarer jeg med en gang.
-            </div>
-            
-            </div>
+        <section id="job" class="left">
+            <canvas class="background contact"></canvas>
+            <div class="section_inhold">
+                <div class="job">
+                    <!-- <div class="title">
+                        <h4 class="title_name">arbeidserfaring</h4>
+                    </div> -->
+                    <ul class="list">
+                        <li>
+                            <h4>Sognsveien barnehage - Oslo</h4>
+                            <h6>August 2015 - nå  </h6>
+                            <h5>stiling: barnehagemedarbeider</h5>   
+                        </li>
+                        <li>
+                            <h4>Keyserløkka barnehage - Oslo</h4>
+                            <h6>August 2014 - Juni 2015  </h6>
+                            <h5>stiling: barnehagemedarbeider</h5>   
 
+                        </li>
+                        <li>
+                            <h4>Café Amfitrion - Oslo</h4>
+                            <h6>August 2008 - November 2011 </h6>
+                            <h5>stiling: daglig leder, barista, medarbeider</h5>   
+                        </li>
+                    </ul>
+                </div>   
+                           
+            </div>
+        </section>
+        <section id="contact_me" class="left">
+            <canvas class="background contact"></canvas>
+            <div class="section_inhold">
+            <div class="contact_me-container">  
+                <form id="contact" action="https://formsubmit.co/f8691758356c54be6c25deb3e6def1fc" method="POST">
+                    <h4>Kontakt meg</h4>
+                    <!-- <h4>Så ser vi når vi kan møte</h4> -->
+                    <input type="hidden" name="_next" value="https://hejuhenryk.github.io/Curriculum_vitae/thanks.html">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="Hei check it now!">
+                    <input id="name" name="name" placeholder="Navn" type="text" tabindex="0" required>
+                    <input id="email" name="email" placeholder="E-postadresse" type="email" tabindex="2" required>
+                    <input id="phone" name="phone" placeholder="Telefonnumer" type="tel" tabindex="3" required>
+                    <textarea id="message" name="message" placeholder="Skriv en besjed" tabindex="5" required></textarea>
+                    <button name="submit" type="submit" id="contact-submit" value='Send' data-submit="...Sender">Send</button>
+                </form>
+                <div class="last_word">
+                    Jeg elsker å lage mat. Å eksperimentere med smak og anretning synes jeg er spennende, og det som gir meg mest er å lage mat for andre. 
+                    Jeg liker å være aktiv og da spesielt svømming, løping og sykkel. Jeg er også involvert med et lag som spiller sykkel polo. 
+                    Om det blir et ledig øyeblikk i hverdagen prøver jeg å få inn litt meditasjon.            
+                </div>
+            </div>                
+            </div>
         </section>
     </main>
     
     <script src="cv.js"></script>
 </body>
 </html>
-
-<!--                 
-                <input placeholder="Navn" type="text" tabindex="1" required autofocus>
-                
-                
-                <input placeholder="E-post" type="email" tabindex="2" required>
-                
-                
-                <input placeholder="Telefonnumer" type="tel" tabindex="3" required>
-                
-                
-                <textarea placeholder="Skriv lit om stilingen" tabindex="5" required></textarea>
-                
-                
-                <button name="submit" type="submit" id="contact-submit" data-submit="...Sender">Send</button>
-                 -->

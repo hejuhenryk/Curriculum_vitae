@@ -1,13 +1,109 @@
 const DOMstrings = {
-    main: document.querySelector('#home'),
-    school: document.querySelector('#school'),
-    expiriance: document.querySelector('#expiriance'),
-    contact_canvas: document.querySelector('#contact_me-canvas'),
+    main: document.querySelector('.home'),
+    school: document.querySelector('.school'),
+    expiriance: document.querySelector('.skills'),
+    contact_canvas: document.querySelector('.contact'),
     contact: document.querySelector('#contact_me'),
     picture: document.querySelector('.cv_picture-crop'),
     about: document.querySelector('.about_me'),
-    border: document.querySelector('.main_top')
+    border: document.querySelector('.main_top'),
+    lArrow: document.querySelector('.l'),
+    rArrow: document.querySelector('.r')
 }
+let focus = 3;
+const sections = document.querySelectorAll('section');
+
+const getFocus = () => {
+    sections.forEach( (section, index) => {
+        if(index === focus) {
+            if( !section.classList.contains('focuse')) {
+                section.classList.add('focuse')
+            }
+            if( section.classList.contains('left')) {
+                section.classList.remove('left')
+            }
+            if( section.classList.contains('right')) {
+                section.classList.remove('right')
+            }
+            setMarker(section.id)
+        } else if(index < focus) {
+            section.classList.add('left')
+            if( section.classList.contains('focuse')) {
+                section.classList.remove('focuse')
+            }
+            if( section.classList.contains('right')) {
+                section.classList.remove('remove')
+            }
+        } else if(index > focus) {
+            section.classList.add('right')
+            if( section.classList.contains('focuse')) {
+                section.classList.remove('focuse')
+            }
+            if( section.classList.contains('left')) {
+                section.classList.remove('left')
+            }
+        }
+    })
+}
+let nav = document.querySelectorAll('.navigation')
+
+nav.forEach( link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const id = link.href.slice(link.href.indexOf('#') + 1);
+        //chenge focus
+        sections.forEach( (section, index) => {
+            if( section.id === id ) {
+                focus = index;
+            }
+        })
+        //setMarker on the cliked one
+        setMarker(id)
+        //removeMarket on every other
+        getFocus()
+    })
+})
+
+const setMarker = id => {
+    nav.forEach( (link, index) => {
+        if( link.href.includes(id) ) {
+            if ( index === 0 ) {
+                if( !DOMstrings.lArrow.classList.contains('unvisible') )
+                    DOMstrings.lArrow.classList.add('unvisible')
+            } else {
+                if(DOMstrings.lArrow.classList.contains('unvisible'))
+                    DOMstrings.lArrow.classList.remove('unvisible')
+            }
+            if ( index === nav.length -1 ) {
+                if( !DOMstrings.rArrow.classList.contains('unvisible') )
+                    DOMstrings.rArrow.classList.add('unvisible')
+            } else {
+                if(DOMstrings.rArrow.classList.contains('unvisible'))
+                    DOMstrings.rArrow.classList.remove('unvisible')
+            }
+            if( !link.classList.contains('marker') ) {
+                link.classList.add('marker')
+            }
+        } else {
+            if( link.classList.contains('marker') ) {
+                link.classList.remove('marker')
+            }
+        }
+    })
+}
+
+getFocus()
+
+document.querySelectorAll('.arrow').forEach( arrow => {
+    arrow.addEventListener('click', () => {
+        if( arrow.classList.contains('r')) {
+            if(focus < sections.length - 1) focus++; 
+        } else {
+            if( focus > 0) focus--;
+        }
+        getFocus();
+    })
+})
 
 const colors = {
     dots: '#aaa',
@@ -91,7 +187,9 @@ const followMe = can => {
     can.width =  window.innerWidth;
     can.height = window.innerHeight;
     let dots = [];
-
+    window.addEventListener('mousemove', e => {
+        cursor = getMousePos(can, e)    // canvas is a backround Z-index lower then window 
+    })
     const initBoard = () => {
         dots = [];
         for( let i = 10; i < can.width; i += 10){
@@ -124,6 +222,9 @@ const rainOnMe = can => {
     can.width = window.innerWidth;
     can.height = window.innerHeight;
 
+    window.addEventListener('mousemove', e => {
+        cursor = getMousePos(can, e)    // canvas is a backround Z-index lower then window 
+    })
     let drops = [];
     let colisions = 0;
 
@@ -166,7 +267,9 @@ const aim10 = can => {
     can.width = window.innerWidth;
     can.height = window.innerHeight;
     ifResize(can)
-
+    window.addEventListener('mousemove', e => {
+        cursor = getMousePos(can, e)    // canvas is a backround Z-index lower then window 
+    })
     const target = ( x, y, numRings) => {
         for( let n = 0; n < numRings; n++ ){
             context.beginPath();
@@ -223,7 +326,9 @@ const blobs = can => {
     const context = can.getContext('2d');
     can.width = window.innerWidth;
     can.height = window.innerHeight;
-  
+    window.addEventListener('mousemove', e => {
+        cursor = getMousePos(can, e)    // canvas is a backround Z-index lower then window 
+    })
     const bloppers = [];
     const make = () => {
         const ranX = Math.random()*can.width;
