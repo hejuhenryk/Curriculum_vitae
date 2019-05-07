@@ -145,11 +145,11 @@ function handleTouchMove(evt) {
 
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
         if ( xDiff > 0 ) {
-            /* left swipe */ 
-            if( focus > 0) focus--;
+            /* left swipe */ if(focus < sections.length - 1) focus++; 
+            
         } else {
-            /* right swipe */
-            if(focus < sections.length - 1) focus++; 
+            /* right swipe */ if( focus > 0) focus--;
+            
         }                       
     }
     setFocus();
