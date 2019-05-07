@@ -13,7 +13,7 @@ const DOMstrings = {
 let focus = 0;
 const sections = document.querySelectorAll('section');
 
-const getFocus = () => {
+const setFocus = () => {
     sections.forEach( (section, index) => {
         if(index === focus) {
             if( !section.classList.contains('focuse')) {
@@ -60,7 +60,7 @@ nav.forEach( link => {
         //setMarker on the cliked one
         setMarker(id)
         //removeMarket on every other
-        getFocus()
+        setFocus()
     })
 })
 
@@ -92,7 +92,7 @@ const setMarker = id => {
     })
 }
 
-getFocus()
+setFocus()
 
 document.querySelectorAll('.arrow').forEach( arrow => {
     arrow.addEventListener('click', () => {
@@ -101,9 +101,20 @@ document.querySelectorAll('.arrow').forEach( arrow => {
         } else {
             if( focus > 0) focus--;
         }
-        getFocus();
+        setFocus();
     })
 })
+const navigate = e => {
+    if(e.keyCode === 37){
+        if( focus > 0) focus--;
+    } else if(e.keyCode === 39){
+        if(focus < sections.length - 1) focus++; 
+    }
+    setFocus();
+}
+document.onkeydown = navigate
+
+
 
 const colors = {
     dots: '#aaa',
@@ -119,16 +130,15 @@ function  getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect(), // abs. size of element
     scaleX = canvas.width / rect.width,    // relationship bitmap vs. element for X
     scaleY = canvas.height / rect.height;  // relationship bitmap vs. element for Y
-
     return {
         x: (evt.clientX - rect.left) * scaleX,   // scale mouse coordinates after they have
         y: (evt.clientY - rect.top) * scaleY    // been adjusted to be relative to element 
     }
 }
 
-window.addEventListener('mousemove', e => {
-    cursor = getMousePos(DOMstrings.main, e)    // canvas is a backround Z-index lower then window 
-})
+// window.addEventListener('mousemove', e => {
+//     cursor = getMousePos(DOMstrings.main, e)    // canvas is a backround Z-index lower then window 
+// })
 const ifResize = (can, func) => {
    window.addEventListener('resize', () => {
     can.width =  window.innerWidth;
@@ -188,6 +198,7 @@ const followMe = can => {
     can.height = window.innerHeight;
     let dots = [];
     window.addEventListener('mousemove', e => {
+        if(can.parentElement.classList.contains('focuse')) 
         cursor = getMousePos(can, e)    // canvas is a backround Z-index lower then window 
     })
     const initBoard = () => {
@@ -223,8 +234,10 @@ const rainOnMe = can => {
     can.height = window.innerHeight;
 
     window.addEventListener('mousemove', e => {
+        if(can.parentElement.classList.contains('focuse'))
         cursor = getMousePos(can, e)    // canvas is a backround Z-index lower then window 
     })
+
     let drops = [];
     let colisions = 0;
 
@@ -241,6 +254,7 @@ const rainOnMe = can => {
             if(drop.getY() > can.height){
                 drops.splice(indx, 1);
             }
+            if(can.parentElement.classList.contains('focuse'))
             if(getDistans(drop.getX(), drop.getY(), cursor.x, cursor.y%window.innerHeight) < 5) {
                 colisions++;
                 drops.splice(indx, 1);
@@ -254,9 +268,9 @@ const rainOnMe = can => {
         context.stroke();
         
         context.font='20px sans-serif';
-        context.fillText(colisions, 20, 20);
+        context.fillText(colisions, 20, can.height - 30);
         context.font='10px sans-serif';
-        context.fillText('Hvor mange dråper kan du fange med markøren?', 20, 30);
+        context.fillText('Hvor mange dråper kan du fange med markøren?', 20, can.height - 20);
     }
     ifResize(can)
     animate()
@@ -266,16 +280,22 @@ const aim10 = can => {
     const context = can.getContext('2d');
     can.width = window.innerWidth;
     can.height = window.innerHeight;
-    ifResize(can)
     window.addEventListener('mousemove', e => {
+        if(can.parentElement.classList.contains('focuse'))
         cursor = getMousePos(can, e)    // canvas is a backround Z-index lower then window 
     })
+
+    ifResize(can)
+
     const target = ( x, y, numRings) => {
         for( let n = 0; n < numRings; n++ ){
             context.beginPath();
             context.arc(x, y, n * 10 + 10, 0, Math.PI * 2);
             context.stroke();
         }
+        // context.fillStyle = colors.dots;
+        context.font='10px sans-serif';
+        context.strokeText('SHOOT ME', x -25, y + 50);
     }
     const viewer = (x, y) => {
         context.beginPath();
@@ -291,7 +311,6 @@ const aim10 = can => {
         context.moveTo(x, y - 15);
         context.lineTo(x, y + 15);
         context.stroke();
-
     }
     let confused = {
         x: cursor.x  ,
@@ -304,7 +323,6 @@ const aim10 = can => {
     }
     DOMstrings.contact.addEventListener('click', (e) => { // catching click on leyer over canvas
         shots.push(dot(confused.x, confused.y, 5, context))
-        console.log('pang')
     })
 
     const animate = () => {
@@ -326,9 +344,12 @@ const blobs = can => {
     const context = can.getContext('2d');
     can.width = window.innerWidth;
     can.height = window.innerHeight;
+
     window.addEventListener('mousemove', e => {
+        if(can.parentElement.classList.contains('focuse'))
         cursor = getMousePos(can, e)    // canvas is a backround Z-index lower then window 
     })
+
     const bloppers = [];
     const make = () => {
         const ranX = Math.random()*can.width;
@@ -336,7 +357,7 @@ const blobs = can => {
         bloppers.push(dot(ranX, ranY, 1, context))
         bloppers[bloppers.length - 1].drowDot()
     }
-
+    
     const animate = () => {    
         context.fillStyle= colors.dots;
         requestAnimationFrame(animate);
@@ -359,9 +380,9 @@ const blobs = can => {
     ifResize(can)
     animate()
 }
-
-rainOnMe(DOMstrings.school)
-followMe(DOMstrings.main)
-aim10(DOMstrings.contact_canvas)
 blobs(DOMstrings.expiriance)
+rainOnMe(DOMstrings.school)
+
+aim10(DOMstrings.contact_canvas)
+followMe(DOMstrings.main)
 
