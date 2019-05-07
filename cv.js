@@ -115,8 +115,8 @@ const navigate = e => {
 
 document.onkeydown = navigate
 
-window.addEventListener('touchstart', handleTouchStart, false);        
-window.addEventListener('touchmove', handleTouchMove, false);
+document.addEventListener('touchstart', handleTouchStart, false);        
+document.addEventListener('touchmove', handleTouchMove, false);
 
 var xDown = null;                                                        
 var yDown = null;
