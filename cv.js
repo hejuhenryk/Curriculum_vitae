@@ -1,6 +1,7 @@
 const DOMstrings = {
     main: document.querySelector('.home'),
     school: document.querySelector('.school'),
+    cours: document.querySelector('.kurs'),
     expiriance: document.querySelector('.skills'),
     contact_canvas: document.querySelector('.contact'),
     contact: document.querySelector('#contact_me'),
@@ -10,7 +11,7 @@ const DOMstrings = {
     lArrow: document.querySelector('.l'),
     rArrow: document.querySelector('.r')
 }
-let focus = 0;
+let focus = 4;
 const sections = document.querySelectorAll('section');
 
 const setFocus = () => {
@@ -271,6 +272,152 @@ const followMe = can => {
     ifResize( can, initBoard)
     animate()
 }
+const wave = can => {
+    const context = can.getContext('2d');
+    can.width =  window.innerWidth;
+    can.height = window.innerHeight;
+    let dots = [];
+    let columnR, columnL;
+    window.addEventListener('mousemove', e => {
+        if(can.parentElement.classList.contains('focuse')) 
+        cursor = getMousePos(can, e)    // canvas is a backround Z-index lower then window 
+    })
+    const initBoard = () => {
+        dots = [];
+        columnL = 0;
+        columnR = 0;
+        for( let i = 10; i < can.width; i += 10){
+            for( let j = 10; j < can.height; j += 10) {
+                dots.push( dot(i, j, 1, context) );
+            }
+        }
+
+    }
+ 
+    let animate = () => {
+        requestAnimationFrame(animate);
+        context.clearRect(0, 0, can.width, can.height);
+        context.fillStyle = colors.dots;
+        if( columnR > can.width) { columnR = 0; }
+        if( columnL < 0 ) { columnL = can.width; }
+        columnR += 4;
+        columnL -= 4;
+        dots.forEach( dot => {
+            if( (getDistans(dot.getX(), 0, columnR , 0)  < 25) ||
+             (getDistans(dot.getX(), 0, columnL , 0)  < 25) ){
+                dot.sizeUpR();
+            } else {
+                dot.sizeDownR();
+            }
+            dot.drowDot()
+        })
+    }
+    initBoard()   
+    ifResize( can, initBoard)
+    animate()
+}
+const heart = can => {
+    const context = can.getContext('2d');
+    can.width =  window.innerWidth;
+    can.height = window.innerHeight;
+    let dots = [];
+    let R;
+    const midle = { x:0, y:0 }
+    window.addEventListener('mousemove', e => {
+        if(can.parentElement.classList.contains('focuse')) 
+        cursor = getMousePos(can, e)    // canvas is a backround Z-index lower then window 
+    })
+    const initBoard = () => {
+        dots = [];
+        R = 0;
+        midle.x = can.width / 2;
+        midle.y = can.height / 2;
+        for( let i = 10; i < can.width; i += 10){
+            for( let j = 10; j < can.height; j += 10) {
+                dots.push( dot(i, j, 1, context) );
+            }
+        }
+
+    }
+ 
+    let animate = () => {
+        requestAnimationFrame(animate);
+        context.clearRect(0, 0, can.width, can.height);
+        context.fillStyle = colors.dots;
+        if ( R < can.width/2 || R < can.height/2 ){
+            R += 1,5
+        } else {
+            R = 0;
+        }
+
+        dots.forEach( dot => {
+            if ( getDistans(dot.getX(), dot.getY(), midle.x, midle.y) < R &&
+            getDistans(dot.getX(), dot.getY(), midle.x, midle.y) > R - 20 ) {
+                dot.sizeUpR()
+            } else {
+                dot.sizeDownR()
+            }
+            dot.drowDot()
+        })
+    }
+    initBoard()   
+    ifResize( can, initBoard)
+    animate()
+}
+const ball = can => {
+    const context = can.getContext('2d');
+    can.width =  window.innerWidth;
+    can.height = window.innerHeight;
+    let dots = [];
+    let R;
+    const ball = { 
+        x:0,
+        y:0,
+        speed:2, 
+        dx:0, 
+        dy:0 
+    }
+    window.addEventListener('mousemove', e => {
+        if(can.parentElement.classList.contains('focuse')) 
+        cursor = getMousePos(can, e)    // canvas is a backround Z-index lower then window 
+    })
+    const initBoard = () => {
+        dots = [];
+        R = 0;
+        ball.dx = Math.random() * 2 - 1;
+        ball.dy = Math.random() * 2 - 1;
+        for( let i = 10; i < can.width; i += 10){
+            for( let j = 10; j < can.height; j += 10) {
+                dots.push( dot(i, j, 1, context) );
+            }
+        }
+
+    }
+ 
+    let animate = () => {
+        requestAnimationFrame(animate);
+        context.clearRect(0, 0, can.width, can.height);
+        context.fillStyle = colors.dots;
+        if ( R < can.width/2 || R < can.height/2 ){
+            R += 1,5
+        } else {
+            R = 0;
+        }
+
+        dots.forEach( dot => {
+            if ( getDistans(dot.getX(), dot.getY(), midle.x, midle.y) < R &&
+            getDistans(dot.getX(), dot.getY(), midle.x, midle.y) > R - 20 ) {
+                dot.sizeUpR()
+            } else {
+                dot.sizeDownR()
+            }
+            dot.drowDot()
+        })
+    }
+    initBoard()   
+    ifResize( can, initBoard)
+    animate()
+}
 
 const rainOnMe = can => {
     const context = can.getContext('2d');
@@ -425,8 +572,8 @@ const blobs = can => {
     animate()
 }
 blobs(DOMstrings.expiriance)
-rainOnMe(DOMstrings.school)
-
+wave(DOMstrings.school)
+heart(DOMstrings.cours)
 aim10(DOMstrings.contact_canvas)
 followMe(DOMstrings.main)
 
