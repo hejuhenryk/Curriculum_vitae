@@ -2,6 +2,7 @@ const DOMstrings = {
     main: document.querySelector('.home'),
     school: document.querySelector('.school'),
     cours: document.querySelector('.kurs'),
+    job: document.querySelector('.job'),
     expiriance: document.querySelector('.skills'),
     contact_canvas: document.querySelector('.contact'),
     contact: document.querySelector('#contact_me'),
@@ -369,13 +370,13 @@ const ball = can => {
     can.width =  window.innerWidth;
     can.height = window.innerHeight;
     let dots = [];
-    let R;
     const ball = { 
-        x:0,
-        y:0,
-        speed:2, 
+        x: can.width/2,
+        y: can.height/2,
+        speed:8, 
         dx:0, 
-        dy:0 
+        dy:0,
+        r: 50
     }
     window.addEventListener('mousemove', e => {
         if(can.parentElement.classList.contains('focuse')) 
@@ -383,7 +384,6 @@ const ball = can => {
     })
     const initBoard = () => {
         dots = [];
-        R = 0;
         ball.dx = Math.random() * 2 - 1;
         ball.dy = Math.random() * 2 - 1;
         for( let i = 10; i < can.width; i += 10){
@@ -398,15 +398,16 @@ const ball = can => {
         requestAnimationFrame(animate);
         context.clearRect(0, 0, can.width, can.height);
         context.fillStyle = colors.dots;
-        if ( R < can.width/2 || R < can.height/2 ){
-            R += 1,5
-        } else {
-            R = 0;
+        ball.x += ball.dx * ball.speed;
+        ball.y += ball.dy * ball.speed;
+        if(ball.x + ball.r >= can.width || ball.x - ball.r <= 0 ){
+            ball.dx = -ball.dx
         }
-
+        if(ball.y + ball.r >= can.height || ball.y - ball.r <= 0 ){
+            ball.dy = -ball.dy
+        }
         dots.forEach( dot => {
-            if ( getDistans(dot.getX(), dot.getY(), midle.x, midle.y) < R &&
-            getDistans(dot.getX(), dot.getY(), midle.x, midle.y) > R - 20 ) {
+            if ( getDistans(dot.getX(), dot.getY(), ball.x, ball.y) < ball.r ) {
                 dot.sizeUpR()
             } else {
                 dot.sizeDownR()
@@ -574,6 +575,7 @@ const blobs = can => {
 blobs(DOMstrings.expiriance)
 wave(DOMstrings.school)
 heart(DOMstrings.cours)
+ball(DOMstrings.job)
 aim10(DOMstrings.contact_canvas)
 followMe(DOMstrings.main)
 
