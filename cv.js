@@ -12,7 +12,7 @@ const DOMstrings = {
     lArrow: document.querySelector('.l'),
     rArrow: document.querySelector('.r')
 }
-let focus = 4;
+let focus = 3;
 const sections = document.querySelectorAll('section');
 
 const setFocus = () => {
@@ -204,13 +204,20 @@ let dot = (x, y, r, con) => {
         con.arc(x, y, r, 0, 2 * Math.PI, true);
         con.fill();
     }
-    let sizeUpR = () => {
-        if( r < 3 ){
-            r += 0.1;
+    let sizeUpR = (R) => {
+        if( !R ){
+            if( r < 3 ){
+                r += 0.2;
+            }
+        } else {
+            r = R
         }
+        
     }
-    let sizeDownR = () => {
-        if( r > 1 ){
+    let sizeDownR = (dr) => {
+        if( dr && r > 1) {
+            r -= dr;
+        } else if ( r > 1) {
             r -= 0.1;
         }
     }
@@ -373,7 +380,7 @@ const ball = can => {
     const ball = { 
         x: can.width/2,
         y: can.height/2,
-        speed:8, 
+        speed:25, 
         dx:0, 
         dy:0,
         r: 50
@@ -408,10 +415,48 @@ const ball = can => {
         }
         dots.forEach( dot => {
             if ( getDistans(dot.getX(), dot.getY(), ball.x, ball.y) < ball.r ) {
-                dot.sizeUpR()
+                dot.sizeUpR(4)
             } else {
-                dot.sizeDownR()
+                dot.sizeDownR(1)
+                // dot.sizeUpR(1)
+
             }
+            dot.drowDot()
+        })
+    }
+    initBoard()   
+    ifResize( can, initBoard)
+    animate()
+}
+const fff = can => {
+    const context = can.getContext('2d');
+    can.width =  window.innerWidth;
+    can.height = window.innerHeight;
+    let dots = [];
+    let snake = (headX, headY, tail) => {
+        
+    }
+    window.addEventListener('mousemove', e => {
+        if(can.parentElement.classList.contains('focuse')) 
+        cursor = getMousePos(can, e)    // canvas is a backround Z-index lower then window 
+    })
+    const initBoard = () => {
+        dots = [];
+        
+        for( let i = 10; i < can.width; i += 10){
+            for( let j = 10; j < can.height; j += 10) {
+                dots.push( dot(i, j, 1, context) );
+            }
+        }
+        snake 
+
+    }
+ 
+    let animate = () => {
+        requestAnimationFrame(animate);
+        context.clearRect(0, 0, can.width, can.height);
+        context.fillStyle = colors.dots;
+        dots.forEach( dot => {
             dot.drowDot()
         })
     }
@@ -572,7 +617,7 @@ const blobs = can => {
     ifResize(can)
     animate()
 }
-blobs(DOMstrings.expiriance)
+fff(DOMstrings.expiriance)
 wave(DOMstrings.school)
 heart(DOMstrings.cours)
 ball(DOMstrings.job)
