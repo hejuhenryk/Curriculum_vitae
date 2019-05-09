@@ -106,6 +106,7 @@ section {
     position: absolute;
     top: 0;
     overflow: hidden;
+
     /* border: red 1px solid; */
 }
 .left {
@@ -116,7 +117,9 @@ section {
 }
 .focus {
     left: 0;
+    transition: 5s;
 }
+
 
 .background {
     height: 100vh;

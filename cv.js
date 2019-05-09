@@ -12,7 +12,7 @@ const DOMstrings = {
     lArrow: document.querySelector('.l'),
     rArrow: document.querySelector('.r')
 }
-let focus = 3;
+let focus = 0;
 const sections = document.querySelectorAll('section');
 
 const setFocus = () => {
@@ -34,7 +34,7 @@ const setFocus = () => {
                 section.classList.remove('focuse')
             }
             if( section.classList.contains('right')) {
-                section.classList.remove('remove')
+                section.classList.remove('right')
             }
         } else if(index > focus) {
             section.classList.add('right')
@@ -352,7 +352,7 @@ const heart = can => {
         requestAnimationFrame(animate);
         context.clearRect(0, 0, can.width, can.height);
         context.fillStyle = colors.dots;
-        if ( R < can.width/2 || R < can.height/2 ){
+        if ( R < can.width/2 && R < can.height/2 ){
             R += 1,5
         } else {
             R = 0;
@@ -433,9 +433,6 @@ const fff = can => {
     can.width =  window.innerWidth;
     can.height = window.innerHeight;
     let dots = [];
-    let snake = (headX, headY, tail) => {
-        
-    }
     window.addEventListener('mousemove', e => {
         if(can.parentElement.classList.contains('focuse')) 
         cursor = getMousePos(can, e)    // canvas is a backround Z-index lower then window 
@@ -448,7 +445,6 @@ const fff = can => {
                 dots.push( dot(i, j, 1, context) );
             }
         }
-        snake 
 
     }
  
@@ -457,6 +453,19 @@ const fff = can => {
         context.clearRect(0, 0, can.width, can.height);
         context.fillStyle = colors.dots;
         dots.forEach( dot => {
+            if (Math.random(2) > 0.8 ) {
+                dot.sizeUpR()
+            } else {
+                dot.sizeDownR()
+            }
+            // if ( getDistans (dot.getX(), dot.getY(), cursor.x, cursor.y) < 5 ){
+            //     context.fillStyle='red';
+            //     dot.drowDot();
+            // } else {
+            //     context.fillStyle = colors.dots;
+            //     dot.drowDot();
+
+            // }
             dot.drowDot()
         })
     }
