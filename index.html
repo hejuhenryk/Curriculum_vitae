@@ -12,7 +12,6 @@
     <title>CV - Marcin Sawczuk-Szymkiewicz</title>
 </head>
 <body>
-
     <header>
         <nav>
             <ul>
@@ -25,7 +24,7 @@
                     <ul class="inner_nav">
                         <li><a class="navigation" href="#learned">utdanning</a></li>
                         <li><a class="navigation" href="#courses">kurs</a></li>
-                        <li><a class="navigation" href="#skills">ferdigheter</a></li>
+                        <li><a class="navigation" href="#skills">ferdigheter / git</a></li>
                         <li><a class="navigation" href="#job">jobberfaring</a></li>
                         
                     </ul>
@@ -38,23 +37,23 @@
         <div class="arrow r">&#187;</div>
         </div>
         <div class="arrow l">&#171;</div>
+        <canvas class="background"></canvas>
+
         <section id="home" class="left">
-            <canvas class="background home"></canvas>
             <div class="section_inhold">
                 <div class="main_top">
                     <h1>marcin </h1>
                     <h1>sawczuk-szymkiewicz</h1><p>front-end developer</p>
                 </div>
-                <div class="main_bottom">
+                <!-- <div class="main_bottom">
                     <p class="about_me">
                         Jeg er en 35 år gammel, optimistisk kar som brenner for å jobbe med koding.
 
-                    </p>    
+                    </p>     -->
                 </div> 
             </div>
         </section>
         <section id="learned" class="left">
-            <canvas class="background school"></canvas>
             <div class="section_inhold">
                 <div class="school">
                     <!-- <div class="title">
@@ -76,7 +75,6 @@
             </div>
         </section>
         <section id="courses" class="left">
-            <canvas class="background kurs"></canvas>
             <div class="section_inhold">
                 <div class="course">
                     <!-- <div class="title">
@@ -94,17 +92,17 @@
                             <h5>Academind</h5>
                         </li>                        
                         <li>
-                            <h3>The Modern JavaScript Bootcamp</h3>
+                            <h3>The modern JavaScript bootcamp</h3>
                             <h6>september 2018 - november 2018</h6>
                             <h5>Andrew Mead</h5>
                         </li>
                         <li>
-                            <h3>Build Responsive with HTML5 and CSS3</h3>
+                            <h3>Build responsive with HTML5 and CSS3</h3>
                             <h6>juli 2018 - september 2018</h6>
                             <h5>Jonas Schmedtmann</h5>
                         </li>                       
                         <li>                              
-                            <h3>The Complete JavaScript Course</h3>
+                            <h3>The complete JavaScript course</h3>
                             <h6>mai 2018 - juli 2018</h6>
                             <h5>Jonas Schmedtmann</h5>
                         </li>
@@ -115,7 +113,6 @@
 
 
         <section id="skills" class="left trans">
-            <canvas class="background skills"></canvas>
             <div class="section_inhold ">
             <div class="expiriance">
                 <div class="tools">
@@ -124,13 +121,13 @@
                     </div>
                     <ul class="list">
                         <li>
-                            <h4><i class="fab fa-js-square"></i>JavaScript</h4>
+                            <h3><i class="fab fa-js-square"></i>JavaScript</h3>
                         </li>
                         <li>
-                            <h4><i class="fab fa-css3-alt"></i>CSS</h4>
+                            <h3><i class="fab fa-css3-alt"></i>CSS</h3>
                         </li>
                         <li>
-                            <h4><i class="fab fa-html5"></i>HTML</h4>
+                            <h3><i class="fab fa-html5"></i>HTML</h3>
                         </li>
                     </ul>
                 </div>
@@ -140,13 +137,13 @@
                     </div>
                     <ul class="list">
                         <li>
-                            <h4>norsk</h4>
+                            <h3>norsk</h3>
                         </li>
                         <li>
-                            <h4>engelsk</h4>
+                            <h3>engelsk</h3>
                         </li>
                         <li>
-                            <h4>polsk</h4>
+                            <h3>polsk</h3>
                         </li>
                     </ul>
                 </div>
@@ -169,7 +166,6 @@
             </div>
         </section>
         <section id="job" class="left trans">
-            <canvas class="background job"></canvas>
             <div class="section_inhold">
                 <div class="job">
                     <!-- <div class="title">
@@ -177,18 +173,18 @@
                     </div> -->
                     <ul class="list">
                         <li>
-                            <h4>Sognsveien barnehage - Oslo</h4>
+                            <h3>Sognsveien barnehage - Oslo</h3>
                             <h6>August 2015 - nå  </h6>
                             <h5>stiling: barnehagemedarbeider</h5>   
                         </li>
                         <li>
-                            <h4>Keyserløkka barnehage - Oslo</h4>
+                            <h3>Keyserløkka barnehage - Oslo</h3>
                             <h6>August 2014 - Juni 2015  </h6>
                             <h5>stiling: barnehagemedarbeider</h5>   
 
                         </li>
                         <li>
-                            <h4>Café Amfitrion - Oslo</h4>
+                            <h3>Café Amfitrion - Oslo</h3>
                             <h6>August 2008 - November 2011 </h6>
                             <h5>stiling: daglig leder, barista, medarbeider</h5>   
                         </li>
@@ -198,13 +194,12 @@
             </div>
         </section>
         <section id="contact_me" class="left">
-            <canvas class="background contact"></canvas>
             <div class="section_inhold">
                 <div class="contact_me-container">  
                     <form id="contact" action="https://formsubmit.co/f8691758356c54be6c25deb3e6def1fc" method="POST">
                         <!-- <h4>Kontakt meg</h4> -->
                         <!-- <h4>Så ser vi når vi kan møte</h4> -->
-                        <input type="hidden" name="_next" value="https://hejuhenryk.github.io/Curriculum_vitae/thanks.html">
+                        <input type="hidden" name="_next" value="https://hejuhenryk.github.io/Curriculum_vitae/index.html">
                         <input type="hidden" name="_captcha" value="false">
                         <input type="hidden" name="_subject" value="Hei check it now!">
                         <div>
@@ -225,6 +220,6 @@
         </section>
     </main>
     
-    <script src="cv.js"></script>
+    <script type="module" src="cv.js"></script>
 </body>
 </html>
