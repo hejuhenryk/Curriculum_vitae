@@ -12,9 +12,21 @@ export let cursor = {
     x: 0,
     y: 0
 }
+const animations = [ ballAnim, fff, heart, wave, followMe]
+let curent = 0;
+let curAnim = animations[curent](DOMstrings.background)
 window.addEventListener('mousemove', e => {
     cursor = getMousePos(DOMstrings.background, e)    // canvas is a backround Z-index lower then window 
 })
+const changeBackground = () => {
+    curent++;
+    if(curent > animations.length - 1) curent = 0;
+    curAnim.cancel_animation()
+    curAnim = animations[curent](DOMstrings.background)
+    curAnim.initBoard()
+    curAnim.animate(0)
+    ifResize(DOMstrings.background, curAnim.initBoard)
+}
 let focus = 0;
 const setFocus = () => {
     DOMstrings.sections.forEach( (section, index) => {
@@ -61,9 +73,11 @@ DOMstrings.nav.forEach( link => {
             }
         })
         //setMarker on the cliked one
-        setMarker(id)
+        setMarker(id);
         //removeMarket on every other
-        setFocus()
+        setFocus();
+        changeBackground();
+
     })
 })
 
@@ -95,7 +109,8 @@ const setMarker = id => {
     })
 }
 
-setFocus()
+setFocus();
+changeBackground();
 
 DOMstrings.arrows.forEach( arrow => {
     arrow.addEventListener('click', () => {
@@ -105,6 +120,8 @@ DOMstrings.arrows.forEach( arrow => {
             if( focus > 0) focus--;
         }
         setFocus();
+        changeBackground();
+
     })
 })
 const navigate = e => {
@@ -114,6 +131,8 @@ const navigate = e => {
         if(focus < DOMstrings.sections.length - 1) focus++; 
     }
     setFocus();
+    changeBackground();
+
 }
 
 document.onkeydown = navigate
@@ -163,21 +182,10 @@ function handleTouchMove(evt) {
 };
 
 
-const animations = [ ballAnim, fff, heart, wave, followMe]
-let curent = 0;
-let curAnim = animations[curent](DOMstrings.background)
+
 curAnim.initBoard()
 curAnim.animate(0)
 
 ifResize(DOMstrings.background, curAnim.initBoard)
 
-window.addEventListener('click', () => {
-    curent++;
-    if(curent > animations.length - 1) curent = 0;
-    curAnim.cancel_animation()
-    curAnim = animations[curent](DOMstrings.background)
-    curAnim.initBoard()
-    curAnim.animate(0)
-    ifResize(DOMstrings.background, curAnim.initBoard)
 
-})
