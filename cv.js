@@ -166,8 +166,10 @@ function handleTouchMove(evt) {
     var yDiff = yDown - yUp;
 
     if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        
         if ( xDiff > 0 ) {
-            /* left swipe */ if(focus < sections.length - 1) focus++; 
+            
+            /* left swipe */ if(focus < DOMstrings.sections.length - 1) focus++; 
             
         } else {
             /* right swipe */ if( focus > 0) focus--;
